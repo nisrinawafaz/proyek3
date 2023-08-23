@@ -1,0 +1,116 @@
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows:repeat(6, 1fr);
+  gap: 2px;
+  padding: 2px;
+  background-color: black;
+
+}
+
+.grid-container > div {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  font-size: 30px;
+}
+
+.container{
+  padding: 10px;
+}
+
+.white-text
+{
+    color: white;
+}
+
+/* class span kolom */
+.cols-2 {
+  grid-column:span 2;
+}
+
+.cols-3 {
+  grid-column:span 3;
+}
+
+
+/* class span baris */
+.rows-2
+{
+    grid-row:span 2;
+}
+
+.rows-3
+{
+    grid-row:span 3;
+}
+
+.rows-4
+{
+    grid-row:span 4;
+}
+
+
+/* class warna box */
+.warna-kuning
+{
+  background-color: #ffff00 ;
+}
+
+.warna-hitam
+{
+  background-color:black ;
+}
+
+.warna-hijau
+{
+  background-color: #00af50 ;
+}
+
+.warna-coklat
+{
+  background-color: #833d0c;
+}
+
+.warna-pink
+{
+  background-color:#ff66ff ;
+}
+
+.warna-biru
+{
+  background-color: #01b0f1 ;
+}
+
+.warna-biru-tua
+{
+  background-color:#0071c1 ;
+}
+
+.warna-abu
+{
+  background-color: #a6a6a6;
+}
+
+.warna-orange
+{
+  background-color: #ffc000;
+}
+
+.warna-ungu
+{
+  background-color:#7030a0 ;
+}
+
+.warna-merah
+{
+  background-color: #fe0000 ;
+}
+
+.warna-putih
+{
+  background-color:white;
+}
