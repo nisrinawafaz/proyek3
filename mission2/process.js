@@ -31,7 +31,7 @@ menus.forEach(function(menu) {
 	listMenus += 
     `<div id="${menu.num}" class="card" style="width:250px">
     <div class="card-body center-item">
-    <img src="gambar.png" alt="Card image" style="width:200px">
+    <img src="gambar-${menu.num}.png" alt="Card image" style="width:200px">
     <h4 class="card-title" id="nama-${menu.num}">${menu.nama}</h4>
     <p class="card-text">Rp <span id ="harga-${menu.num}">${menu.harga}</p>
     <div class="grid-container">
@@ -67,10 +67,12 @@ function kurangBarang(buttonElement) {
 const orders = [];
 function tambahOrder(buttonElement) {
     var buttonId = buttonElement.id;
+    var button = buttonElement.parentElement.parentElement;
 
     const namaElem = document.getElementById(`nama-${buttonId}`);
     const hargaElem = document.getElementById(`harga-${buttonId}`);
     const kuantitasElem = document.getElementById(`kuantitas-${buttonId}`);
+    const GambarBarang = buttonId;
     const NamaBarang = namaElem.textContent;
     const HargaBarang = hargaElem.textContent;
     const BanyakBarang = kuantitasElem.value;
@@ -92,6 +94,7 @@ function tambahOrder(buttonElement) {
     else
     {
         orders.push({
+            gambar : GambarBarang,
             nama: NamaBarang,
             harga: HargaBarang,
             kuantitas: parseInt(BanyakBarang),
@@ -118,7 +121,7 @@ function tambahOrder(buttonElement) {
             <table>
                 <tr>
                     <td rowspan="2">
-                        <img class="card-img-cart" src="gambar.png" alt="Card image">
+                        <img class="card-img-cart" src="gambar-${order.gambar}.png" alt="Card image">
                     </td>
                     <td width="300px">
                         ${order.nama} 
