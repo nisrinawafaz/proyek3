@@ -6,7 +6,7 @@
   gap: 2px;
   padding: 2px;
   background-color: black;
-
+  height: 100vh;
 }
 
 .grid-container > div {
@@ -19,7 +19,7 @@
 }
 
 .container{
-  padding: 10px;
+  padding: 5px;
 }
 
 .white-text
