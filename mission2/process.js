@@ -1,85 +1,82 @@
 var totalHarga = 0;
-    var totalPajak =0;
-    var totalBayar =0;
+var totalPajak = 0;
+var totalBayar = 0;
 
 const menus = [
     {
-        num :1,
-        nama: "Burger 1",
+        num: 1,
+        nama: "Burger",
         harga: 35000
     },
     {
-        num :2,
-        nama: "Burger 2",
+        num: 2,
+        nama: "Pizza",
         harga: 40000
     },
     {
-        num :3,
-        nama: "Burger 3",
+        num: 3,
+        nama: "Kentang Goreng",
         harga: 50000
     },
     {
-        num :4,
-        nama: "Burger 4",
+        num: 4,
+        nama: "Ayam Goreng",
         harga: 45000
     }
 ];
 
-let listMenus='';
+let listMenus = '';
 
-menus.forEach(function(menu) {
-	listMenus += 
+menus.forEach(function (menu) {
+    listMenus +=
     `<div id="${menu.num}" class="card" style="width:250px">
-    <div class="card-body center-item">
-    <img src="gambar-${menu.num}.png" alt="Card image" style="width:200px">
-    <h4 class="card-title" id="nama-${menu.num}">${menu.nama}</h4>
-    <p class="card-text">Rp <span id ="harga-${menu.num}">${menu.harga}</p>
-    <div class="grid-container">
-        <button type="button" class="btn btn-primary" onclick='kurangBarang(this)'>-</button>
-        <input type="text" name="kuantitas" id="kuantitas-${menu.num}" value="0">
-        <button type="button" class="btn btn-primary" onclick='tambahBarang(this)'>+</button>
-    </div>
-    <button type="button" class="btn btn-success" id="${menu.num}" onclick='tambahOrder(this)'>Tambah Barang</button>
-    </div>
+        <div class="card-body center-item">
+            <img src="gambar-${menu.num}.png" alt="Card image" style="width:200px">
+            <h4 class="card-title" id="nama-${menu.num}">${menu.nama}</h4>
+            <p class="card-text">Rp <span id ="harga-${menu.num}">${menu.harga}</p>
+            <div class="grid-container">
+                <button type="button" class="btn btn-primary" onclick='kurangBarang(this)'>-</button>
+                <input type="text" name="kuantitas" id="kuantitas-${menu.num}" class=" form-control text-center"value="0">
+                <button type="button" class="btn btn-primary" onclick='tambahBarang(this)'>+</button>
+            </div>
+            <button type="button" class="btn btn-success" id="${menu.num}" onclick='tambahOrder(this)'>Tambah Barang</button>
+        </div>
     </div>`;
 });
 
 document.getElementById("content").innerHTML += listMenus;
 
 function tambahBarang(buttonElement) {
-    var inputElement = buttonElement.previousElementSibling;
-    var inputId = inputElement.id;
+    let inputElement = buttonElement.previousElementSibling;
+    let inputId = inputElement.id;
 
     inputElement.value = parseInt(inputElement.value) + 1;
-} 
+}
 
 function kurangBarang(buttonElement) {
-    var inputElement = buttonElement.nextElementSibling;
-    var inputId = inputElement.id;
-    if(parseInt(inputElement.value) >1)
-    {
+    let inputElement = buttonElement.nextElementSibling;
+    let inputId = inputElement.id;
+    if (parseInt(inputElement.value) > 1) {
         inputElement.value = parseInt(inputElement.value) - 1;
     }
-
-    
-} 
+}
 
 const orders = [];
 function tambahOrder(buttonElement) {
-    var buttonId = buttonElement.id;
-    var button = buttonElement.parentElement.parentElement;
+    let buttonId = buttonElement.id;
+    let button = buttonElement.parentElement.parentElement;
 
-    const namaElem = document.getElementById(`nama-${buttonId}`);
-    const hargaElem = document.getElementById(`harga-${buttonId}`);
-    const kuantitasElem = document.getElementById(`kuantitas-${buttonId}`);
-    const GambarBarang = buttonId;
-    const NamaBarang = namaElem.textContent;
-    const HargaBarang = hargaElem.textContent;
-    const BanyakBarang = kuantitasElem.value;
-    const total = HargaBarang*BanyakBarang;
+    let namaElem = document.getElementById(`nama-${buttonId}`);
+    let hargaElem = document.getElementById(`harga-${buttonId}`);
+    let kuantitasElem = document.getElementById(`kuantitas-${buttonId}`);
+    let GambarBarang = buttonId;
+    let NamaBarang = namaElem.textContent;
+    let HargaBarang = hargaElem.textContent;
+    let BanyakBarang = kuantitasElem.value;
+    let total = HargaBarang * BanyakBarang;
 
-    var found = false;
-    var index =0;
+    let found = false;
+    let index = 0;
     for (let i = 0; i < orders.length; i++) {
         if (orders[i].nama === NamaBarang) {
             found = true;
@@ -88,20 +85,19 @@ function tambahOrder(buttonElement) {
     }
 
     if (found == true) {
-        orders[index].kuantitas += parseInt(BanyakBarang) ;
-        orders[index].total = orders[index].kuantitas  * orders[index].harga;
-    } 
-    else
-    {
+        orders[index].kuantitas += parseInt(BanyakBarang);
+        orders[index].total = orders[index].kuantitas * orders[index].harga;
+    }
+    else {
         orders.push({
-            gambar : GambarBarang,
+            gambar: GambarBarang,
             nama: NamaBarang,
             harga: HargaBarang,
             kuantitas: parseInt(BanyakBarang),
-            total:parseInt(HargaBarang)  * parseInt(BanyakBarang)
+            total: parseInt(HargaBarang) * parseInt(BanyakBarang)
         });
     }
-    
+
     totalHarga = 0;
     for (let i = 0; i < orders.length; i++) {
         totalHarga += parseInt(orders[i].total);
@@ -110,13 +106,13 @@ function tambahOrder(buttonElement) {
     totalBayar = totalHarga + totalPajak;
 
     document.getElementById("totalHarga").innerHTML = 'Rp. ' + totalHarga;
-    document.getElementById("totalPajak").innerHTML = 'Rp. ' +totalPajak;
-    document.getElementById("totalBayar").innerHTML = 'Rp. ' +totalBayar;
+    document.getElementById("totalPajak").innerHTML = 'Rp. ' + totalPajak;
+    document.getElementById("totalBayar").innerHTML = 'Rp. ' + totalBayar;
 
-        let listOrders = '<ul id="list-orders">';
+    let listOrders = '<ul id="list-orders">';
 
-        orders.forEach(function(order) {
-            listOrders += 
+    orders.forEach(function (order) {
+        listOrders +=
             `<li>
             <table>
                 <tr>
@@ -138,11 +134,11 @@ function tambahOrder(buttonElement) {
             </table>
             <hr />
         </li>`;
-        });
+    });
 
-        listOrders += '</ul>';
+    listOrders += '</ul>';
 
-        document.getElementById("order").innerHTML = listOrders;
-        console.log(orders);
+    document.getElementById("order").innerHTML = listOrders;
+    console.log(orders);
 }
 
